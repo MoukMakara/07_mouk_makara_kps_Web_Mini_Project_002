@@ -15,20 +15,14 @@ import Image from "next/image";
 import updateWorkSpace from "../../public/updateWorkSpace.svg";
 import { useForm } from "react-hook-form";
 import { updateWorkspaceAction } from "@/action/updateWorkspaceAction";
-import { getWorkspaceById } from "@/service/workspace.service";
 
-export function UpdateWorkSpaceComponent({ workspaceId }) {
+export function UpdateWorkSpaceComponent({ workspace }) {
   const { handleSubmit, reset, register } = useForm();
   const handleName = async (data) => {
-    const workspaceId = "02e2d589-b8ee-4dfa-bdf5-1c49ff3f431c";
+    console.log("after update workspace name:", data.workspaceName);
 
-    if (!workspaceId) {
-      console.error("Workspace ID is missing!");
-      return;
-    }
-
-    await updateWorkspaceAction({
-      workspaceId,
+    updateWorkspaceAction({
+      workspaceId: workspace.id,
       workspaceName: data.workspaceName,
     });
     console.log("Updated workspace name: ", data.workspaceName);
@@ -38,7 +32,6 @@ export function UpdateWorkSpaceComponent({ workspaceId }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        {/* <button onClick={() => handleClick(workspaceId)}> */}
         <Button variant="">
           <Image
             className="w-5 h-5 cursor-pointer"
@@ -46,7 +39,6 @@ export function UpdateWorkSpaceComponent({ workspaceId }) {
             alt=""
           />
         </Button>
-        {/* </button> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-white">
         <DialogHeader>

@@ -8,7 +8,7 @@ import { getAllTasks } from "@/service/task.service";
 const WorkspaceId = async ({ params }) => {
   const { workspaceId } = params;
   const tasks = await getAllTasks(workspaceId);
-  console.log("get all tasks", tasks);
+  // console.log("get all tasks", tasks);
 
   const { payload } = tasks || {};
 
