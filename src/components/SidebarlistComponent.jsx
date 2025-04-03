@@ -3,6 +3,7 @@ import { Plus, Star, MoreHorizontal, LogOut } from "lucide-react";
 import { getAllWorkspaces } from "@/service/workspace.service";
 import { CreateWorkSpaceComponent } from "./CreateWorkSpaceComponent";
 import { UpdateWorkSpaceComponent } from "./UpdateWorkSpaceComponent";
+import LogoutComponent from "./LogoutComponent";
 // Random color
 const getRandomColor = () => {
   const colors = [
@@ -23,16 +24,10 @@ const SidebarlistComponent = async () => {
   const workspaces = await getAllWorkspaces();
   const { payload } = workspaces;
 
-  // get workspaceId
-
-  const handleClick = (workspaceId) => {};
-
   // Filter favorite workspaces
   const favoriteWorkspaces = payload.filter(
     (workspace) => workspace.isFavorite
   );
-
-  // const [workspaceId, setWorkspace] = useState();
 
   return (
     <div className="w-65 p-4 flex flex-col justify-between ">
@@ -96,12 +91,7 @@ const SidebarlistComponent = async () => {
       </div>
 
       {/* Logout Button */}
-      <div className="flex items-center space-x-2 text-gray-500 cursor-pointer mt-auto">
-        {" "}
-        {/* logout button */}
-        <LogOut className="w-5 h-5 text-teal-400" />
-        <span className="font-medium text-sm text-teal-400">Logout</span>
-      </div>
+      <LogoutComponent />
     </div>
   );
 };

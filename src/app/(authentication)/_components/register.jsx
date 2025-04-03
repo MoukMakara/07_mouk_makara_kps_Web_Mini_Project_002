@@ -3,16 +3,25 @@ import { registerAction } from "@/action/registerAction";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { registerSchema } from "@/lib/zod/registerSchema";
 import { registerService } from "@/service/auth/register.service";
 import { KeyRound, Mail, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function RegisterComponent() {
   const router = useRouter();
-  const { handleSubmit, reset, register } = useForm();
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
 
   const onSubmit = async (data) => {
     const userData = {
@@ -46,6 +55,9 @@ export default function RegisterComponent() {
           className={` bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
           {...register("username")}
         />
+        <span className="text-red-500 text-sm mt-4">
+          {errors?.username?.message}
+        </span>
       </div>
 
       {/* email */}
@@ -63,6 +75,9 @@ export default function RegisterComponent() {
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
           {...register("email")}
         />
+        <span className="text-red-500 text-sm mt-4">
+          {errors?.email?.message}
+        </span>
       </div>
 
       {/* password */}
@@ -80,6 +95,9 @@ export default function RegisterComponent() {
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
           {...register("password")}
         />
+        <span className="text-red-500 text-sm mt-4">
+          {errors?.password?.message}
+        </span>
       </div>
 
       {/* sign in button */}

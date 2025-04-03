@@ -8,10 +8,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/lib/zod/loginSchema";
 
 export default function LoginComponent() {
   const router = useRouter();
-  const { handleSubmit, reset, register } = useForm();
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
 
   const onSubmit = async (data) => {
     // calling sign in function that provide by NextAuth
@@ -50,6 +59,9 @@ export default function LoginComponent() {
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
           {...register("email")}
         />
+        <span className="text-red-500 text-sm mt-4">
+          {errors?.email?.message}
+        </span>
       </div>
 
       {/* password */}
@@ -67,6 +79,9 @@ export default function LoginComponent() {
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
           {...register("password")}
         />
+        <span className="text-red-500 text-sm mt-4">
+          {errors?.password?.message}
+        </span>
       </div>
 
       {/* sign in button */}

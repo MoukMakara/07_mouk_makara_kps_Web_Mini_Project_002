@@ -10,8 +10,6 @@ export const getAllTasks = async (
   try {
     const header = await headerToken();
     const response = await fetch(
-      // http://96.9.81.187:8080/api/v1/tasks/workspace/260d385c-84f7-47df-9a85-5b7c26d21cad?pageNo=0&pageSize=10&sortBy=taskId&sortDirection=ASC
-
       `${process.env.NEXTAUTH_URL}/tasks/workspace/${workspaceId}?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&sortDirection=${sortDirection}`,
       {
         method: "GET",
@@ -20,7 +18,7 @@ export const getAllTasks = async (
     );
     const data = await response.json();
 
-    // console.log("data of tasks: ", data);
+    console.log("data of tasks: ", data);
 
     return data;
   } catch (err) {

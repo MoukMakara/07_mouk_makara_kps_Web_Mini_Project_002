@@ -9,7 +9,7 @@ import { Clock, Ellipsis } from "lucide-react";
 import React from "react";
 import NewTaskButton from "./NewTaskButton";
 
-const CardComponent = ({ tasks }) => {
+const CardComponent = ({ tasks = [] }) => {
   // Group tasks by status
   const notStartedTasks = tasks.filter((task) => task.status === "NOT_STARTED");
   const inProgressTasks = tasks.filter((task) => task.status === "IN_PROGRESS");

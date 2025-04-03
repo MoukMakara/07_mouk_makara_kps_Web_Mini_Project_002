@@ -8,21 +8,13 @@ export const authOption = {
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: "Credentials",
 
-      //credentials: {
-      //  username: { label: "Username", type: "text", placeholder: "jsmith" },
-      //  password: { label: "Password", type: "password" },
-      //},
-
       async authorize(data) {
         const userData = {
           email: data?.email,
           password: data?.password,
         };
-        console.log("Sending login request with:", userData);
 
         const userInfo = await loginService(userData);
-
-        console.log("Login response:", userInfo);
 
         if (userInfo?.status === 400) {
           throw new Error(userInfo?.detail);
@@ -42,9 +34,9 @@ export const authOption = {
   },
 
   // Custom Login page
-  // pages: {
-  //   signIn: "/login",
-  // },
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };
