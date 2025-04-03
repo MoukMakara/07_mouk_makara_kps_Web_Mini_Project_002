@@ -1,25 +1,19 @@
 import headerToken from "@/app/api/headerToken";
+// get all tasks from particular workspace
+export const getAllTasks = async (workspaceId) => {
+  console.log("workspaceId", workspaceId);
 
-export const getAllTasks = async (
-  workspaceId = "260d385c-84f7-47df-9a85-5b7c26d21cad",
-  pageNo = 0,
-  pageSize = 10,
-  sortBy = "taskId",
-  sortDirection = "ASC"
-) => {
   try {
     const header = await headerToken();
     const response = await fetch(
-      `${process.env.NEXTAUTH_URL}/tasks/workspace/${workspaceId}?pageNo=${pageNo}&pageSize=${pageSize}&sortBy=${sortBy}&sortDirection=${sortDirection}`,
+      `${process.env.NEXTAUTH_URL}/tasks/workspace/${workspaceId}?pageNo=0&pageSize=10&sortBy=taskId&sortDirection=ASC`,
       {
         method: "GET",
         headers: header,
       }
     );
     const data = await response.json();
-
-    console.log("data of tasks: ", data);
-
+    // console.log("data of tasks: ", data);
     return data;
   } catch (err) {
     console.log("tasks error: ", err);

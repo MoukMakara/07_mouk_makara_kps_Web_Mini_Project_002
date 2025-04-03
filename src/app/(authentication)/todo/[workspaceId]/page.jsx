@@ -1,16 +1,16 @@
+// app/todo/[workspaceId]
 import SidebarlistComponent from "@/components/SidebarlistComponent";
-import HomePageComponent from "./_components/HomePageComponent";
 import FilterComponent from "@/components/FilterComponent";
 import UserAccountComponent from "@/components/UserAccountComponent";
 import CardComponent from "@/components/CardComponent";
-import NewTaskButton from "@/components/NewTaskButton";
 import { getAllTasks } from "@/service/task.service";
-import { getAllWorkspaces } from "@/service/workspace.service";
 
-const HomePage = async () => {
-  const tasks = await getAllTasks();
+const WorkspaceId = async ({ params }) => {
+  const { workspaceId } = params;
+  const tasks = await getAllTasks(workspaceId);
+  console.log("get all tasks", tasks);
 
-  const { payload } = tasks;
+  const { payload } = tasks || {};
 
   return (
     <div className="flex h-screen font-sf-pro">
@@ -31,4 +31,4 @@ const HomePage = async () => {
     </div>
   );
 };
-export default HomePage;
+export default WorkspaceId;

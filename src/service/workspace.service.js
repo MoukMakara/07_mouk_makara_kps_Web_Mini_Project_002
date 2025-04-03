@@ -1,7 +1,5 @@
 // get all workspaces
-
 import headerToken from "@/app/api/headerToken";
-
 export const getAllWorkspaces = async (
   pageNo = 0,
   pageSize = 10,

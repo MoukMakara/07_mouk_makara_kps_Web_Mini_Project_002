@@ -35,7 +35,7 @@ export default function LoginComponent() {
       console.log("login is successful");
 
       reset();
-      router.push("/");
+      router.push("/todo");
     } else if (response?.status == 401) {
       console.log("login is faild");
       reset();

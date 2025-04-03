@@ -20,7 +20,6 @@ const getRandomColor = () => {
 };
 
 const SidebarlistComponent = async () => {
-  // console.log("workspaces data:", workspaces);
   const workspaces = await getAllWorkspaces();
   const { payload } = workspaces;
 
