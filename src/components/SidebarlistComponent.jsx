@@ -1,8 +1,6 @@
 import React from "react";
 import { Plus, Star, MoreHorizontal, LogOut } from "lucide-react";
 import { getAllWorkspaces } from "@/service/workspace.service";
-import { CreateWorkSpaceComponent } from "./CreateWorkSpaceComponent";
-import { UpdateWorkSpaceComponent } from "./UpdateWorkSpaceComponent";
 import LogoutComponent from "./LogoutComponent";
 import WorkSpaceComponent from "./WorkSpaceComponent";
 // Random color
